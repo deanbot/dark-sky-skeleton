@@ -1,23 +1,26 @@
-# dark-sky-api
+# dark-sky-skeleton
 
 *Based on Elias Hussary's [dark-sky](https://github.com/eliash91/dark-sky).*
 
-A wrapper library for Dark Sky API (previously known as Forecast.io). See Dark Sky developer docs: [https://darksky.net/dev/docs](https://darksky.net/dev/docs).
+A barebones wrapper library for Dark Sky API (previously known as Forecast.io). See Dark Sky developer docs: [https://darksky.net/dev/docs](https://darksky.net/dev/docs).
+
+For a more robust solution see [dark-sky-api](https://github.com/deanbot/dark-sky-api).
 
 ### Install it
 
 ```
- npm install dark-sky-api
+ npm install dark-sky-skeleton
 ```
 
 ### Require it
+
 ```javascript
-import darkSkyApi from 'dark-sky-api';
+import darkSkyApi from 'dark-sky-skeleton';
 ```
 
 ### Initialize it
 
-While dark-sky-api allows embedding api keys through use of jsonp on the backend using a proxy to make the api call is highly suggested as this hides the API key from client side requests [[ref](https://darksky.net/dev/docs/faq#cross-origin)]. 
+While dark-sky-skeleton allows embedding api keys through use of jsonp on the backend using a proxy to make the api call is highly suggested as this hides the API key from client side requests [[ref](https://darksky.net/dev/docs/faq#cross-origin)]. 
 
 * proxy url is optional
 * pass an empty string or false for api key if using proxy url
@@ -31,6 +34,10 @@ const darkSky = new darkSkyApi('your-dark-sky-api-key', '//base-url-to-proxy/ser
 ```javascript
 darkSky.latitude(lat)
   .longitude(long)
+  .units('us')
+  .language('en')
+  .time('2000-04-06T12:20:05') // moment().year(2000).format('YYYY-MM-DDTHH:mm:ss')
+  .extendHourly(true)
   .get();
   .then(data => console.log(data));
 ```
@@ -58,3 +65,9 @@ darkSky.latitude(lat)
   .get()
   .then(data => console.log(data));
 ```
+
+
+## TODO 
+
+* reset query params when appropriate
+* add testing

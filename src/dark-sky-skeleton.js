@@ -1,4 +1,3 @@
-import moment from 'moment';
 import queryString from 'query-string';
 import fetchJsonp from 'fetch-jsonp';
 import fetch from 'whatwg-fetch';
@@ -23,8 +22,11 @@ class DarkSkyApi {
     return this;
   }
 
+  /**
+   * @param {string} time - 'YYYY-MM-DDTHH:mm:ss'
+   */
   time(time) {
-    !time ? null : this._time = moment(time).format('YYYY-MM-DDTHH:mm:ss');
+    !time ? null : this._time = time;
     return this;
   }
 
@@ -43,6 +45,7 @@ class DarkSkyApi {
     return this;
   }
 
+  // not on currently requests
   extendHourly(param) {
     !param ? null : this.query.extend = 'hourly';
     return this;

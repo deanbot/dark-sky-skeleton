@@ -6,10 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _moment = require('moment');
-
-var _moment2 = _interopRequireDefault(_moment);
-
 var _queryString = require('query-string');
 
 var _queryString2 = _interopRequireDefault(_queryString);
@@ -50,10 +46,15 @@ var DarkSkyApi = function () {
       !lat ? null : this._latitude = lat;
       return this;
     }
+
+    /**
+     * @param {string} time - 'YYYY-MM-DDTHH:mm:ss'
+     */
+
   }, {
     key: 'time',
     value: function time(_time) {
-      !_time ? null : this._time = (0, _moment2.default)(_time).format('YYYY-MM-DDTHH:mm:ss');
+      !_time ? null : this._time = _time;
       return this;
     }
   }, {
@@ -74,6 +75,9 @@ var DarkSkyApi = function () {
       !blocks ? null : this.query.exclude = blocks;
       return this;
     }
+
+    // not on currently requests
+
   }, {
     key: 'extendHourly',
     value: function extendHourly(param) {
