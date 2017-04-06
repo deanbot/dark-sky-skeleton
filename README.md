@@ -15,7 +15,7 @@ For a more robust solution see [dark-sky-api](https://github.com/deanbot/dark-sk
 ### Require it
 
 ```javascript
-import darkSkyApi from 'dark-sky-skeleton';
+import darkSkySkeleton from 'dark-sky-skeleton';
 ```
 
 ### Initialize it
@@ -26,7 +26,7 @@ While dark-sky-skeleton allows embedding api keys through use of jsonp on the ba
 * pass an empty string or false for api key if using proxy url
 
 ```javascript
-const darkSky = new darkSkyApi('your-dark-sky-api-key', '//base-url-to-proxy/service');
+const darkSky = new darkSkySkeleton('your-dark-sky-api-key', '//base-url-to-proxy/service');
 ```
 
 ### Use it

@@ -1,1 +1,1 @@
-module.exports = require('./dist/dark-sky-api.js');
+module.exports = require('./dist/dark-sky-skeleton.js');

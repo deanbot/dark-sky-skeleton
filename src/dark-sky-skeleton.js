@@ -2,7 +2,7 @@ import queryString from 'query-string';
 import fetchJsonp from 'fetch-jsonp';
 import fetch from 'whatwg-fetch';
 
-class DarkSkyApi {
+class DarkSkySkeleton {
   constructor(apiKey, proxyUrl) {
     this.proxyUrl = proxyUrl || '';
     this.apiKey = apiKey || '';
@@ -91,4 +91,4 @@ class DarkSkyApi {
   }
 }
 
-export default DarkSkyApi;
+export default DarkSkySkeleton;

@@ -22,9 +22,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var DarkSkyApi = function () {
-  function DarkSkyApi(apiKey, proxyUrl) {
-    _classCallCheck(this, DarkSkyApi);
+var DarkSkySkeleton = function () {
+  function DarkSkySkeleton(apiKey, proxyUrl) {
+    _classCallCheck(this, DarkSkySkeleton);
 
     this.proxyUrl = proxyUrl || '';
     this.apiKey = apiKey || '';
@@ -34,7 +34,7 @@ var DarkSkyApi = function () {
     this.query = {};
   }
 
-  _createClass(DarkSkyApi, [{
+  _createClass(DarkSkySkeleton, [{
     key: 'longitude',
     value: function longitude(long) {
       !long ? null : this._longitude = long;
@@ -124,7 +124,7 @@ var DarkSkyApi = function () {
     }
   }]);
 
-  return DarkSkyApi;
+  return DarkSkySkeleton;
 }();
 
-exports.default = DarkSkyApi;
+exports.default = DarkSkySkeleton;
