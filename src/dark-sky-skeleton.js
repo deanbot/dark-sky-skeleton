@@ -41,13 +41,13 @@ class DarkSkySkeleton {
   }
 
   exclude(blocks) {
-    !blocks ? null : this.query.exclude = blocks;
+    this.query.exclude = blocks;
     return this;
   }
 
   // not on currently requests
   extendHourly(param) {
-    !param ? null : this.query.extend = 'hourly';
+    !param ? null : this.query.extend = !!param;
     return this;
   }
 

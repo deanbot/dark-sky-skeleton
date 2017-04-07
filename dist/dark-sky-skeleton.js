@@ -72,7 +72,7 @@ var DarkSkySkeleton = function () {
   }, {
     key: 'exclude',
     value: function exclude(blocks) {
-      !blocks ? null : this.query.exclude = blocks;
+      this.query.exclude = blocks;
       return this;
     }
 
@@ -81,7 +81,7 @@ var DarkSkySkeleton = function () {
   }, {
     key: 'extendHourly',
     value: function extendHourly(param) {
-      !param ? null : this.query.extend = 'hourly';
+      !param ? null : this.query.extend = !!param;
       return this;
     }
   }, {
