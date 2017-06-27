@@ -26,7 +26,7 @@ class DarkSkySkeleton {
    * @param {string} time - 'YYYY-MM-DDTHH:mm:ss'
    */
   time(time) {
-    !time ? null : this._time = time;
+    this._time = time;
     return this;
   }
 
@@ -47,7 +47,7 @@ class DarkSkySkeleton {
 
   // not on currently requests
   extendHourly(param) {
-    !param ? null : this.query.extend = !!param;
+    this.query.extend = !!param;
     return this;
   }
 
@@ -65,7 +65,7 @@ class DarkSkySkeleton {
   get() {
     if (!this._latitude || !this._longitude) {
       return new Promise((resolve, reject) => {
-        reject("Request not sent. ERROR: Longitute or Latitude is missing.");
+        reject('Request not sent. ERROR: Longitute or Latitude is missing.');
       });
     }
     this.generateReqUrl();
