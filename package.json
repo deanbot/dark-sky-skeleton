@@ -1,7 +1,7 @@
 {
   "name": "dark-sky-skeleton",
-  "version": "0.1.3",
-  "description": "barebones dark sky weather api for client side js - supports api key and proxy urls",
+  "version": "0.1.4",
+  "description": "barebones dark sky weather api - for client or server side js",
   "main": "index.js",
   "scripts": {
     "build": "babel ./src/dark-sky-skeleton.js --out-file ./dist/dark-sky-skeleton.js",
@@ -20,7 +20,8 @@
     "forecast",
     "forecast-io",
     "forecast.io",
-    "forecast"
+    "forecast",
+    "isomorphic"
   ],
   "author": "Dean Verleger",
   "license": "ISC",
@@ -33,8 +34,9 @@
     "babel-preset-env": "^1.3.2"
   },
   "dependencies": {
+    "babel-plugin-add-module-exports": "^0.2.1",
     "fetch-jsonp": "^1.0.6",
-    "query-string": "^4.3.2",
-    "whatwg-fetch": "^2.0.3"
+    "isomorphic-fetch": "^2.2.1",
+    "query-string": "^4.3.2"
   }
 }

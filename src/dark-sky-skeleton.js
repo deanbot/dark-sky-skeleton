@@ -1,10 +1,10 @@
 import queryString from 'query-string';
 import fetchJsonp from 'fetch-jsonp';
-import fetch from 'whatwg-fetch';
+import fetch from 'isomorphic-fetch';
 
 class DarkSkySkeleton {
-  constructor(apiKey, proxyUrl) {
-    this.proxyUrl = proxyUrl || '';
+  constructor(apiKey, proxy) {
+    this.proxy = proxy || '';
     this.apiKey = apiKey || '';
     this._longitude = null;
     this._latitude = null;
@@ -52,7 +52,7 @@ class DarkSkySkeleton {
   }
 
   generateReqUrl() {
-    const baseUrl = this.proxyUrl ? this.proxyUrl : `https://api.darksky.net/forecast/${this.apiKey}`;
+    const baseUrl = this.proxy && this.proxy !== true ? this.proxy : `https://api.darksky.net/forecast/${this.apiKey}`;
     this.url = `${baseUrl}/${this._latitude},${this._longitude}`;
     this._time
       ? this.url += `,${this._time}`
@@ -70,7 +70,7 @@ class DarkSkySkeleton {
     }
     this.generateReqUrl();
 
-    const query = this.proxyUrl ? fetch(this.url) : fetchJsonp(this.url);
+    const query = this.proxy ? fetch(this.url) : fetchJsonp(this.url);
 
     return query.then(function (response) {
       return response.json();
@@ -90,5 +90,4 @@ class DarkSkySkeleton {
     return true;
   }
 }
-
 export default DarkSkySkeleton;
