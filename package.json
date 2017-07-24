@@ -1,7 +1,7 @@
 {
   "name": "dark-sky-skeleton",
-  "version": "0.1.41",
-  "description": "barebones dark sky weather api - for client or server side js",
+  "version": "0.1.42",
+  "description": "barebones dark sky weather api - for client or server-side js",
   "main": "index.js",
   "scripts": {
     "build": "babel ./src/dark-sky-skeleton.js --out-file ./dist/dark-sky-skeleton.js",

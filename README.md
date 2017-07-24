@@ -6,6 +6,8 @@ An isomorphic barebones js wrapper library for Dark Sky API (previously known as
 
 For a more robust solution see [dark-sky-api](https://github.com/deanbot/dark-sky-api).
 
+You can use dark-sky-skeleton client-side __OR__ server-side. Note: an example of a server side proxy used with client side dark-sky-skeleton is forthecoming...
+
 ## Install it
 
 ```
@@ -31,7 +33,7 @@ const api = new DarkSkySkeleton('your-dark-sky-api-key');
 #### Experimental (untested - help wanted)
 The above is simple and great for testing, but it exposes your api key in client side requests. Using a server-side proxy to make the actual api call to dark sky and is highly suggested as this hides the API key from client side requests [[ref](https://darksky.net/dev/docs/faq#cross-origin)]. 
 
-The proxy in this would receive a request issued by dark-sky-api and attach this query to a base uri (like the following: `https://api.darksky.net/forecast/your-api-key`) prior to returning a final request.
+The proxy would receive a request issued by dark-sky-api and attach this query to a base uri (like the following: `https://api.darksky.net/forecast/your-api-key`) and return a final request.
 
 ```javascript
 import DarkSkySkeleton from 'dark-sky-skeleton';
