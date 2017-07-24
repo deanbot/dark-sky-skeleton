@@ -2,7 +2,7 @@
 
 *Based on Elias Hussary's [dark-sky](https://github.com/eliash91/dark-sky).*
 
-An isomorphic barebones js wrapper library for Dark Sky API (previously known as Forecast.io). See Dark Sky developer docs: [https://darksky.net/dev/docs](https://darksky.net/dev/docs).
+A barebones js wrapper library for Dark Sky api (previously known as Forecast.io). See Dark Sky developer docs: [https://darksky.net/dev/docs](https://darksky.net/dev/docs).
 
 For a more robust solution see [dark-sky-api](https://github.com/deanbot/dark-sky-api).
 
@@ -14,49 +14,51 @@ You can use dark-sky-skeleton client-side __OR__ server-side. Note: an example o
  npm install dark-sky-skeleton
 ```
 
-## Client Side Setup
-
-### Import it
+## Import it
 
 ```javascript
 import DarkSkySkeleton from 'dark-sky-skeleton';
 ```
 
-### Initialize it
-
-`DarkSkySkeleton(apiKey, proxy)`
-
-```javascript
-const api = new DarkSkySkeleton('your-dark-sky-api-key');
-```
-
-#### Experimental (untested - help wanted)
-The above is simple and great for testing, but it exposes your api key in client side requests. Using a server-side proxy to make the actual api call to dark sky and is highly suggested as this hides the API key from client side requests [[ref](https://darksky.net/dev/docs/faq#cross-origin)]. 
-
-The proxy would receive a request issued by dark-sky-api and attach this query to a base uri (like the following: `https://api.darksky.net/forecast/your-api-key`) and return a final request.
-
-```javascript
-import DarkSkySkeleton from 'dark-sky-skeleton';
-const api = new DarkSkySkeleton(false, '//base-url-to-proxy/service');
-```
-
-## Server Side Setup
-
-### Import it
+or Common JS
 
 ```javascript
 const DarkSkySkeleton = require('dark-sky-skeleton');
 ```
 
-### Initialize it
+## Initialize it
 
 `DarkSkySkeleton(apiKey, proxy)`
+- {string|bool} apiKey - your Dark Sky api key or false if using proxy
+- {string|bool} [proxy] - optional url to proxy service or true if running server-side
+
+### Client-side Setup
+
+```javascript
+const api = new DarkSkySkeleton('your-dark-sky-api-key');
+```
+
+#### Proxy URL - Client-side be warned!
+
+The above is simple and great for testing, but your api key is exposed in every request (when running in client-side). Using a server-side proxy to make the actual api call to dark sky is highly suggested as this hides the api key. [[ref](https://darksky.net/dev/docs/faq#cross-origin)]. 
+
+To use a proxy set your api-key to false or an empty string, and pass a url to the proxy service as the proxy (second) param.
+
+```javascript
+const api = new DarkSkySkeleton(false, '//base-url-to-proxy/service');
+```
+
+#### Experimental (help wanted)
+
+Dark sky skeleton theoretically supports a proxy service (aka untested). A proxy service would receive a request issued by dark-sky-skeleton, attach this query to a base uri (like the following: `https://api.darksky.net/forecast/your-api-key`), and return a final request.
+
+### Server Side Setup
 
 ```javascript
 const api = new DarkSkySkeleton('your-dark-sky-api-key', true);
 ```
 
-Passing true as the proxy parameter indicates that the caller is server-side (_and essentially a proxy_).
+Passing true as the proxy parameter indicates that the caller is server-side. Awesome!
 
 ## Use it
 
@@ -82,9 +84,9 @@ darkSky.latitude(lat)
 darkSky.get().then(data => console.log(data));
 ```
 
-### Make use of excludes
+## Make use of excludes
 
-"Exclude some number of data blocks from the API response. This is useful for reducing latency and saving cache space ([see 'Request Parameters'](https://darksky.net/dev/docs/forecast))."
+"Exclude some number of data blocks from the api response. This is useful for reducing latency and saving cache space ([see 'Request Parameters'](https://darksky.net/dev/docs/forecast))."
 
 ```javascript
 const excludes = ['alerts', 'currently', 'daily', 'flags', 'hourly', 'minutely'],
