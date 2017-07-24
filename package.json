@@ -1,6 +1,6 @@
 {
   "name": "dark-sky-skeleton",
-  "version": "0.1.44",
+  "version": "0.1.45",
   "description": "barebones dark sky weather api - for client or server-side js",
   "main": "index.js",
   "scripts": {
