@@ -14,19 +14,19 @@ var _fetchJsonp = require('fetch-jsonp');
 
 var _fetchJsonp2 = _interopRequireDefault(_fetchJsonp);
 
-var _whatwgFetch = require('whatwg-fetch');
+var _isomorphicFetch = require('isomorphic-fetch');
 
-var _whatwgFetch2 = _interopRequireDefault(_whatwgFetch);
+var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var DarkSkySkeleton = function () {
-  function DarkSkySkeleton(apiKey, proxyUrl) {
+  function DarkSkySkeleton(apiKey, proxy) {
     _classCallCheck(this, DarkSkySkeleton);
 
-    this.proxyUrl = proxyUrl || '';
+    this.proxy = proxy || '';
     this.apiKey = apiKey || '';
     this._longitude = null;
     this._latitude = null;
@@ -87,7 +87,7 @@ var DarkSkySkeleton = function () {
   }, {
     key: 'generateReqUrl',
     value: function generateReqUrl() {
-      var baseUrl = this.proxyUrl ? this.proxyUrl : 'https://api.darksky.net/forecast/' + this.apiKey;
+      var baseUrl = this.proxy && this.proxy !== true ? this.proxy : 'https://api.darksky.net/forecast/' + this.apiKey;
       this.url = baseUrl + '/' + this._latitude + ',' + this._longitude;
       this._time ? this.url += ',' + this._time : this.url;
       !this.isEmpty(this.query) ? this.url += '?' + _queryString2.default.stringify(this.query) : this.url;
@@ -102,7 +102,7 @@ var DarkSkySkeleton = function () {
       }
       this.generateReqUrl();
 
-      var query = this.proxyUrl ? (0, _whatwgFetch2.default)(this.url) : (0, _fetchJsonp2.default)(this.url);
+      var query = this.proxy ? (0, _isomorphicFetch2.default)(this.url) : (0, _fetchJsonp2.default)(this.url);
 
       return query.then(function (response) {
         return response.json();
@@ -128,3 +128,4 @@ var DarkSkySkeleton = function () {
 }();
 
 exports.default = DarkSkySkeleton;
+module.exports = exports['default'];
