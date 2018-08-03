@@ -6,10 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _queryString = require('query-string');
-
-var _queryString2 = _interopRequireDefault(_queryString);
-
 var _fetchJsonp = require('fetch-jsonp');
 
 var _fetchJsonp2 = _interopRequireDefault(_fetchJsonp);
@@ -17,6 +13,10 @@ var _fetchJsonp2 = _interopRequireDefault(_fetchJsonp);
 var _isomorphicFetch = require('isomorphic-fetch');
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
+var _queryString = require('query-string');
+
+var _queryString2 = _interopRequireDefault(_queryString);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -81,7 +81,13 @@ var DarkSkySkeleton = function () {
   }, {
     key: 'extendHourly',
     value: function extendHourly(param) {
-      this.query.extend = !!param;
+      if (!!param) {
+        this.query.extend = 'hourly';
+      } else {
+        if (this.query.hasOwnProperty('extend')) {
+          delete this.query.extend;
+        }
+      }
       return this;
     }
   }, {

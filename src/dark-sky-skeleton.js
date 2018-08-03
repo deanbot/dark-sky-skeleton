@@ -1,6 +1,6 @@
-import queryString from 'query-string';
 import fetchJsonp from 'fetch-jsonp';
 import fetch from 'isomorphic-fetch';
+import queryString from 'query-string';
 
 class DarkSkySkeleton {
   constructor(apiKey, proxy) {
@@ -47,7 +47,13 @@ class DarkSkySkeleton {
 
   // not on currently requests
   extendHourly(param) {
-    this.query.extend = !!param;
+    if (!!param) {
+      this.query.extend = 'hourly';
+    } else {
+      if (this.query.hasOwnProperty('extend')) {
+        delete this.query.extend;
+      }
+    }
     return this;
   }
 
