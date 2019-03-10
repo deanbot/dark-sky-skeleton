@@ -35,7 +35,7 @@ const DarkSkySkeleton = require('dark-sky-skeleton');
 ### Client-side Setup
 
 ```javascript
-const api = new DarkSkySkeleton('your-dark-sky-api-key');
+const darkSkyApi = new DarkSkySkeleton('your-dark-sky-api-key');
 ```
 
 #### Proxy URL - Client-side be warned!
@@ -45,7 +45,7 @@ The above is simple and great for testing, but your api key is exposed in every 
 To use a proxy set your api-key to false or an empty string, and pass a URL to the proxy service as the proxy (second) param.
 
 ```javascript
-const api = new DarkSkySkeleton(false, '//base-url-to-proxy/service');
+const darkSkyApi = new DarkSkySkeleton(false, '//base-url-to-proxy/service');
 ```
 
 ##### Experimental (help wanted)
@@ -55,7 +55,7 @@ dark-sky-skeleton theoretically supports a proxy service (aka untested). A proxy
 ### Server Side Setup
 
 ```javascript
-const api = new DarkSkySkeleton('your-dark-sky-api-key', true);
+const darkSkyApi = new DarkSkySkeleton('your-dark-sky-api-key', true);
 ```
 
 Passing true as the proxy parameter indicates that the caller is server-side. Awesome!
@@ -63,25 +63,25 @@ Passing true as the proxy parameter indicates that the caller is server-side. Aw
 ## Use it
 
 ```javascript
-darkSky.latitude(lat)
+darkSkyApi.latitude(lat)
   .longitude(long)
   .units('us')
   .language('en')
   .time('2000-04-06T12:20:05') // moment().year(2000).format('YYYY-MM-DDTHH:mm:ss')
   .extendHourly(true)
-  .get();
+  .get()
   .then(data => console.log(data));
 ```
 
 Feel free to omit setting of latitude and longitude for subsequent calls i.e.:
 
 ```javascript
-darkSky.latitude(lat)
+darkSkyApi.latitude(lat)
   .longitude(long)
   .get()
   .then(data => console.log(data));
 
-darkSky.get().then(data => console.log(data));
+darkSkyApi.get().then(data => console.log(data));
 ```
 
 ## Make use of excludes
@@ -91,7 +91,7 @@ darkSky.get().then(data => console.log(data));
 ```javascript
 const excludes = ['alerts', 'currently', 'daily', 'flags', 'hoURLy', 'minutely'],
   exludesBlock = excludes.filter(val => val != 'currently').join(',')
-darkSky.latitude(lat)
+darkSkyApi.latitude(lat)
   .longitude(long)
   .exclude(excludesBlock)
   .get()
