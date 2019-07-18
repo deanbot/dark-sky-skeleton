@@ -73,7 +73,7 @@ darkSkyApi.latitude(lat)
   .then(data => console.log(data));
 ```
 
-Feel free to omit setting of latitude and longitude for subsequent calls i.e.:
+Feel free to omit setting of latitude and longitude for subsequent calls, i.e.:
 
 ```javascript
 darkSkyApi.latitude(lat)
@@ -89,8 +89,9 @@ darkSkyApi.get().then(data => console.log(data));
 "Exclude some number of data blocks from the api response. This is useful for reducing latency and saving cache space ([see 'Request Parameters'](https://darksky.net/dev/docs/forecast))."
 
 ```javascript
-const excludes = ['alerts', 'currently', 'daily', 'flags', 'hoURLy', 'minutely'],
-  exludesBlock = excludes.filter(val => val != 'currently').join(',')
+const excludes = ['alerts', 'currently', 'daily', 'flags', 'hourly', 'minutely'],
+  excludesBlock = excludes.filter(val => val != 'currently').join(',')
+
 darkSkyApi.latitude(lat)
   .longitude(long)
   .exclude(excludesBlock)
